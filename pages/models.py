@@ -26,7 +26,7 @@ class Blog(models.Model):
     updated = models.DateTimeField(auto_now=True)
     main_img = models.ImageField(upload_to="blogimages/", blank=True)
     tag = models.CharField(max_length=50, default="blogging")
-    views = models.IntegerField(default=0)
+    blog_views = models.IntegerField(default=0)
 
     class Meta:
         ordering = ["-timestamp", "-updated"]

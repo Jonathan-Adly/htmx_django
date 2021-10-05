@@ -183,11 +183,9 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 AWS_QUERYSTRING_AUTH = False
 CKEDITOR_CONFIGS = {
     "default": {
-        "height": 300,
-        "width": "100%",
+        "toolbar": "full",
     },
 }
-
 # AWS
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")

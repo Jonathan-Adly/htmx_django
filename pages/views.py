@@ -27,7 +27,9 @@ def blog_list(request):
 
 
 def blog(request, slug):
-    blog = get_object_or_404(Blog, slug=slug)
+    blog = Blog.objects.get(slug=slug)
+    blog.blog_views += 1
+    blog.save()
     return render(request, "pages/blog.html", {"blog": blog})
 
 
