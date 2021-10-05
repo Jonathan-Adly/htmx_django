@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="viewport" content="width=device-width" />
+
+  <!-- Favicon and title -->
+  <title>Jonathan Adly </title>
+
+  <!-- Halfmoon CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
+  <style> 
+  :root {
+          
+      --dm-button-box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 255);
+      --lm-button-box-shadow-focus: 0 0 0 0.2rem rgba(72,113,129,1);
+      --primary-color-light: #5A8EA2;
+      --primary-color: #487181;
+      --dm-base-text-color: #ffffff
+            
+  }
+  .blog-button {
+    border-radius: 12px;
+    width: 10rem;
+    }
+  .hyperlink-underline {
+    cursor: pointer;
+  }
+  </style>
+</head>
+
+
+<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-set-preferred-mode-onload="true">
+ <!-- Font Awesome-->
+ <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script> 
+  <!-- Modals go here -->
+  {% include 'modal.html' %}
+  
+  <!-- Page wrapper start -->
+  <div class="page-wrapper">
+  <!-- Sticky alerts (toasts), empty container -->
+    <!-- Reference: https://www.gethalfmoon.com/docs/sticky-alerts-toasts -->
+    <div class="sticky-alerts"></div>
+    
+    <!-- Content wrapper start -->
+    <div class="content-wrapper" id="content">
+      {% include 'navbar.html' %}
+      {% block content %} {% endblock content %}
+    </div>
+    <!-- Content wrapper end -->
+
+  </div>
+  <!-- Page wrapper end -->
+
+  
+  <!-- Halfmoon JS -->
+<script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+<!-- HTMX CDN -->
+<script src="https://unpkg.com/htmx.org@1.1.0"></script> 
+    <!-- CSRF request in the headers -->
+<script>
+document.body.addEventListener('htmx:configRequest', (e) => {
+  e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+  })
+</script>
+</body>
+</html>

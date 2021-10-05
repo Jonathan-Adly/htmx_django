@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="content">
+          <h1 class="content-title font-size-22 text-white"> 
+            Blog
+          </h1>
+        </div>
+
+        <div class="text-center row row-eq-spacing align-items-center justify-content-center h-75">
+        {% for category in categories%}
+            <div class="col-sm-6">
+                <div class="card m-20 p-0 border-0">
+                   <a href-"#" class="btn btn-block btn-primary d-flex h-100" style="border-radius: 12px;"> 
+                       <p class="self-align-center m-auto font-weight-bold font-size-24 text-white"> {{category }} </p>
+                    </a>
+                   
+                </div>
+            </div>
+{% endfor %}
+        </div>
+    
+        <div class="row justify-content-around" >
+            <div> <a href= "{% url 'home' %}" class="hyperlink-underline text-white">  &larr; back to home </a> </div> 
+
+         <div> <a href="#"class="hyperlink-underline text-white">  All blogs &rarr; </a> </div>
+    </div>
+
+{% endblock content %}

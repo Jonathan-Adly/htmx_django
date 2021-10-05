@@ -1,0 +1,1 @@
+This is a Django boilerplate with Docker and allauth

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="card border-0 text-center">
+        <div class="w-400 mw-full mx-auto">
+            <img src="{{blog.main_img.url}}" class="img-fluid" alt="{{blog.title}}">
+        </div>
+        <div class="w-full mw-full">
+            <h2> {{blog.title}}</h2>
+            <p class="text-muted">
+                {{blog.updated|date:"F j Y"}}
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="card w-lg-half w-full mx-auto border-0">
+        {{blog.content|safe}}
+        <hr style="border-radius: 1rem; background-color: black;">
+        {% if blog.notes %}
+        {{blog.notes|safe}}
+        <hr style="border-radius: 1rem; background-color: black;">
+        {% endif %}
+     
+        
+    </div>
+
+</div>
+
+{% endblock content %}

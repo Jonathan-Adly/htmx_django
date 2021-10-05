@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+<div class="text-center row align-items-center justify-content-center h-75">
+    <div class= "content col-6"> 
+        <img src="{% static 'images/jonathan.jpeg' %}" class="img-fluid rounded-circle w-300" alt="jonathan" >
+        <p class="m-20 font-weight-bold font-size-20"> 
+            Hello, I’m Jonathan. I’m a software developer and a pharmacist. You can contact me on <a href="https://twitter.com/Jonathan_Adly_" >Twitter </a>.
+        </p>
+        <p> I write about software development (Django/HTMX) and occasionaly about healthcare in the US.   </p>
+
+        <p>
+        <a href="#projects-1" class="btn btn-primary mt-10" role="button"> Projects </a> 
+        <button 
+        class="btn btn-primary mt-10" 
+        role="button"  
+        hx-get="{% url 'blog_list' %}"
+        hx-trigger="click"
+        hx-target="#content"
+        hx-swap="outerHTML"
+        hx-push-url="true"> 
+        Blog 
+        </button> 
+        </p>
+        {% include 'pages/blog_list_3.html'%}
+    </div>
+</div>
+
+    
+</div>
+{% endblock %}

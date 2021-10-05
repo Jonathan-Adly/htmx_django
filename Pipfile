@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+psycopg2-binary = "*"
+django-allauth = "*"
+pillow = "*"
+django-ckeditor = "*"
+environs = {extras = ["django"], version = "*"}
+gunicorn = "*"
+boto3 = "*"
+django-storages = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"

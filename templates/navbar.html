@@ -1,0 +1,101 @@
+<nav class="navbar">
+            <!-- big font on big screens-->
+            <a href="{% url 'home' %}" class="navbar-brand ml-10 hidden-sm-and-down">
+              Jonathan Adly
+            </a>
+            <!-- small font on small screens -->
+            <a href="{% url 'home' %}" class="navbar-brand ml-10 font-size-12 hidden-md-and-up">
+              Jonathan Adly
+            </a>
+            
+            <ul class="navbar-nav hidden-sm-and-down">
+                <li 
+                class="nav-item"
+                hx-get="{% url 'home' %}"
+                hx-trigger="click"
+                hx-target="#content"
+                hx-swap="outerHTML"
+                hx-push-url="/"
+                >
+                    <span class="nav-link">Home</span>
+                </li>
+                <li 
+                class="nav-item"
+                hx-get="{% url 'blog_list' %}"
+                hx-trigger="click"
+                hx-target="#content"
+                hx-swap="outerHTML"
+                hx-push-url="true"
+                >
+                 <span class="nav-link"> Blog </span>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#projects-1" class="nav-link">Projects</a>
+                </li>
+            </ul>
+            <div class="navbar-content ml-auto">
+
+                <!-- Twitter button container 1 start -->
+                <div class="pt-5 mr-5 d-none d-lg-inline-block">
+                  <a href="https://twitter.com/Jonathan_Adly_"> <i class="fab fa-twitter"></i> </a>
+                    
+                </div>
+                <!-- Twitter button container 1 end -->
+
+                <div class="pt-5 mr-5 d-none d-lg-inline-block">
+                  <a href="https://www.linkedin.com/in/jonathan-adly/"> <i class="fab fa-linkedin"></i> </a>
+                    
+                </div>
+
+                <div class="pt-5 mr-5 d-none d-lg-inline-block">
+                  <a href="https://github.com/jonathan-Adly"> <i class="fab fa-github"></i> </a>
+                    
+                </div>
+
+                  <div class="custom-switch navbar-text mr-5 d-inline-block">      
+                <input type="checkbox" id="switch-1" value="" onclick="halfmoon.toggleDarkMode()">
+                <label for="switch-1" class= "font-size-12" id="mode-switch">Dark Mode</label>
+            </div>
+                
+                <div class="dropdown with-arrow hidden-md-and-up">
+                    <button class="btn navbar-menu-btn" data-toggle="dropdown" type="button" id="navbar-dropdown-toggle-btn" aria-haspopup="true" aria-expanded="false">
+                        <span class="text">Menu</span>
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbar-dropdown-toggle-btn">
+                        <div 
+                        class="dropdown-item"
+                        hx-get="{% url 'home' %}"
+                        hx-trigger="click"
+                        hx-target="#content"
+                        hx-swap="outerHTML"
+                        hx-push-url="/"
+                        >
+                          Home
+                        </div>
+                        <div 
+                        class="dropdown-item"
+                        hx-get="{% url 'blog_list' %}"
+                        hx-trigger="click"
+                        hx-target="#content"
+                        hx-swap="outerHTML"
+                        hx-push-url="true"
+                        >
+                        Blog
+                        </div>
+
+                        <a class="dropdown-item" href="#projects"> Projects </a>
+                        <div class="dropdown-divider"></div>
+
+            
+                        <div class="pt-5">
+                           <a class="ml-5" href="https://twitter.com/Jonathan_Adly_"> <i class="fab fa-twitter"></i> </a>
+                           <a class= "ml-5" href="https://www.linkedin.com/in/jonathan-adly/"> <i class="fab fa-linkedin"></i> </a>
+                            <a class= "ml-5" href="https://github.com/jonathan-Adly"> <i class="fab fa-github"></i> </a>
+                        </div>
+                  
+                    </div>
+                </div>
+            </div>
+        </nav>
