@@ -3,14 +3,12 @@
 
 {% block content %}
 <div class="container-fluid">
-    <div class="text-center row align-items-center justify-content-center h-100">
-    {% for blog in blogs %}
-        <div class= "col-sm-10">
-            <div class="d-flex justify-content-around align-items-center">
-                <div class= "card w-lg-quarter w-half h-three-quarter">
+    <div class="row justify-content-center">
+        {% for blog in blogs %}         
+                <div class= "col-4 card w-lg-quarter w-half h-three-quarter">
                     <img src="{{blog.main_img.url}}" class="img-fluid" alt="{{blog.title}}">
                 </div>
-                <div class="card border-0 w-half bg-transparent">
+                <div class="col-4 card border-0 bg-transparent">
                     <a href= "{{blog.get_absolute_url}}"> <h2> {{blog.title|truncatewords:5}} </h2> </a>
                     <small
                     class="hyperlink-underline"
@@ -19,24 +17,16 @@
                     hx-target="#content"
                     hx-swap="outerHTML"
                     hx-push-url="true"> 
-                    
                      #{{blog.tag|upper}}  
-                    
                     </small>
                     <p class="font-size-12 text-muted"> {{blog.updated}} </p>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+                </div> 
+        {% endfor %}
+    </div>
 
-        <div class= "col-sm-4 d-flex"> 
-      {% include 'paginator.html' %}
-        </div>
-
-</div>
-  
+    <div class= "content w-lg-quarter mw-full mx-auto row"> 
+        {% include 'components/paginator.html' %}
+    </div>
 </div>
 
-    
-  
 {% endblock content %}

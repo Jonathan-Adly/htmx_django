@@ -1,5 +1,5 @@
 <div 
-    class="mr-auto"
+    class="col-6 ml-auto"
     hx-get="{% url 'home' %}"
     hx-trigger="click"
     hx-target="#content"
@@ -8,8 +8,8 @@
     > 
     <span class="nav-link hyperlink-underline">  &larr; back to home </span> 
 </div> 
-
-<nav aria-label="Page navigation example">
+<div class= "col-4 mt-10">
+    <nav aria-label="Page navigation example">
             <ul class="pagination">
                 
                 {% if blogs.has_previous %}
@@ -49,4 +49,5 @@
                 {% endif %}
 
             </ul>
-        </nav>
+</nav>
+</div>

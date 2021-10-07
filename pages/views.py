@@ -1,14 +1,43 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
+from django.contrib import messages
+from django.views.decorators.http import require_http_methods
 
-from .models import Blog
+from .models import Blog, Subscriber
+from config.utils import send_email
 import random
 
 
 def home(request):
     blogs = Blog.objects.all()[:3]
+    if request.method == "POST":
+        email = request.POST["email"].lower()
+        sub = Subscriber(email=email)
+        sub.save()
+        subject = "Thanks for subscribing!"
+        message = "<p> Thank you for signing up! You will start receiving updates shortly with no further action. </p> Jonathan Adly </p> <p> P.S. If you need to get in touch with me, just respond to this email. </p>"
+        send_email(subject, message, email)
+        return render(request, "components/success.html")
+
     return render(request, "pages/home.html", {"blogs": blogs})
+
+
+def validate_email_view(request):
+    error = None
+    if request.method == "POST":
+        email = request.POST["email"]
+        try:
+            validate_email(email)
+        except ValidationError as e:
+            error = "Please enter a valid email"
+        if Subscriber.objects.filter(email__iexact=email).exists():
+            error = "Email already exists"
+
+    return render(
+        request, "components/subscribe_box.html", {"error": error, "email": email}
+    )
 
 
 def blog_3(request):

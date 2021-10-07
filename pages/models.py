@@ -41,10 +41,17 @@ class Blog(models.Model):
         subscribers = Subscriber.objects.all()
         email_list = []
         html_template = "email/email_base.html"
+        message = (
+            "<p> Hi there </p>, <p> I just published a new article."
+            f"<a href={self.get_absolute_url()}> {self.title} </a>.</p>"
+            "<p> Check it out & as always, I am happy to hear your feed back. Just respond to this email</p>"
+            "<p> Thanks! </p>"
+            "<p> Jonathan Adly </p>"
+        )
         html_message = render_to_string(
             html_template,
             {
-                "context": self.content,
+                "context": message,
             },
         )
         for sub in subscribers:
