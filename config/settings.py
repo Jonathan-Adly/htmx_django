@@ -175,8 +175,6 @@ ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 86400
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 AUTH_USER_MODEL = "accounts.CustomUser"
 
-# email
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # CKE
 CKEDITOR_UPLOAD_PATH = "uploads/"
@@ -205,3 +203,8 @@ STATICFILES_STORAGE = "config.storage_backends.StaticStorage"
 PUBLIC_MEDIA_LOCATION = "media"
 MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/"
 DEFAULT_FILE_STORAGE = "config.storage_backends.PublicMediaStorage"
+
+# email
+EMAIL_BACKEND = "django_ses.SESBackend"
+AWS_SES_REGION_NAME = "us-east-2"
+AWS_SES_REGION_ENDPOINT = "email.us-east-2.amazonaws.com"

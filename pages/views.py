@@ -25,18 +25,19 @@ def home(request):
 
 
 def validate_email_view(request):
-    error = None
+    errors = None
+    email = None
     if request.method == "POST":
         email = request.POST["email"]
         try:
             validate_email(email)
         except ValidationError as e:
-            error = "Please enter a valid email"
+            errors = e
         if Subscriber.objects.filter(email__iexact=email).exists():
-            error = "Email already exists"
+            errors = ["Email already exists"]
 
     return render(
-        request, "components/subscribe_box.html", {"error": error, "email": email}
+        request, "components/subscribe_box.html", {"errors": errors, "email": email}
     )
 
 

@@ -1,8 +1,8 @@
 from django.template.loader import render_to_string
 from django.core.mail import send_mail, EmailMessage
 
-DEFAULT_FROM_EMAIL = '"Jonathan Adly" <me@jonathanadly.com>'
-REPLY_TO_EMAIL = "me@jonathanadly.com"
+DEFAULT_FROM_EMAIL = '"Jonathan Adly" <hello@jonathanadly.com>'
+REPLY_TO_EMAIL = "hello@jonathanadly.com"
 
 
 def send_email(subject, message, to):

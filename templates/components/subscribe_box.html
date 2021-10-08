@@ -2,7 +2,7 @@
 <div class="row card border-0 w-600 mw-full mx-auto" hx-target="this" hx-swap="outerHTML">
         <h5 class="card-title mt-20 mx-auto">Want to keep in touch?</h5>
             <div class="col-sm-10">
-              {% if error %} 
+              {% if errors %} 
                 <input 
                 type="email" 
                 class="form-control is-invalid m-5" 
@@ -15,7 +15,9 @@
                 
                  <div class="invalid-feedback">
                     <ul>
+                        {% for error in errors %}
                         <li>{{error}}</li>
+                        {% endfor %}
                      </ul>
                 </div>
                  <label for="email" class="sr-only required">Email address</label>
