@@ -1,8 +1,9 @@
 from django.db import models
-
 from django.urls import reverse
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
+
+from config.utils import send_email
 
 from ckeditor_uploader.fields import RichTextUploadingField
 from ckeditor.fields import RichTextField
@@ -39,30 +40,15 @@ class Blog(models.Model):
 
     def send(self, request):
         subscribers = Subscriber.objects.all()
-        email_list = []
-        html_template = "email/email_base.html"
+        to = []
         message = (
-            "<p> Hi there </p>, <p> I just published a new article."
-            f"<a href={self.get_absolute_url()}> {self.title} </a>.</p>"
-            "<p> Check it out & as always, I am happy to hear your feed back. Just respond to this email</p>"
+            "<p> Hi there, </p> <p> I just published a new article:"
+            f"<a href='https://jonathanadly.com{self.get_absolute_url()}'> {self.title} </a>."
+            " Check it out and as always, I am happy to hear your feed back. Just respond to this email</p>"
             "<p> Thanks! </p>"
             "<p> Jonathan Adly </p>"
         )
-        html_message = render_to_string(
-            html_template,
-            {
-                "context": message,
-            },
-        )
         for sub in subscribers:
-            email_list.append(sub.email)
+            to.append(sub.email)
 
-        email = EmailMessage(
-            self.title,
-            html_message,
-            "gadly0123@gmail.com",
-            ["gadly0123@gmail.com"],
-            email_list,
-        )
-        email.content_subtype = "html"
-        email.send()
+        send_email(self.title, message, to)

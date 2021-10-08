@@ -18,7 +18,7 @@ def send_email(subject, message, to):
         subject,
         html_message,
         DEFAULT_FROM_EMAIL,  # from
-        [to],  # to
+        to,  # to
         # BCC will go here
         reply_to=[REPLY_TO_EMAIL],
     )
