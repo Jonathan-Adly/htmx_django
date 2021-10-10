@@ -2,10 +2,12 @@
             id="blogs"
             hx-target="#blogs"
             hx-swap="outerHTML">
-            <h2 class="font-weight-bold font-size-20 text-left m-20"> Blog </h2>
+            <h2 class="font-weight-bold font-size-20 text-left m-20"> Latests Blogs </h2>
             {% for blog in blogs %}
                 <p class="text-left ml-20"> <a href="{{blog.get_absolute_url}}" class="hyperlink-underline"> {{blog.title}}</a> </p>
                 <p class="text-left ml-20 mt-0"> {{blog.timestamp}} </p>
+                {% empty %}
+                <p class="text-left ml-20"> Coming soon! </p>
             {% endfor %}
             <button class="btn active" hx-get= "{% url 'blog_3' %}"> Show me something else </button>
             </div>

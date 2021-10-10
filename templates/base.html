@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,41 +9,105 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
   <meta name="viewport" content="width=device-width" />
 
-  <!-- Favicon and title -->
-  <title>Jonathan Adly </title>
+  <!-- Favicon  -->
+   {% block seo %}
+    <!-- Facebook meta tags -->
+    <meta property="og:title" content="HTMX/Django: A modern fullstack Python stack for web development" />
+    <meta property="og:description" content="Learn how to build modern single page applications using Django & HTMX." />
+    <meta property="og:image" content="{% static 'images/masthead.svg' %}" />
+    <!-- Twitter meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@django-htmx" />
+    <meta name="twitter:creator" content="@djang-htmx" />
+    <meta name="twitter:title" content="HTMX/Django: A modern fullstack Python stack for web development" />
+    <meta name="twitter:description" content="Learn how to build modern single page applications using Django & HTMX." />
+    <meta name="twitter:image" content="{% static 'images/masthead.svg' %}" />
+
+    <!-- Search engine meta tags -->
+    <meta name="description"
+        content="HTMX/Django: Learn A modern fullstack Python stack for web development" />
+    {% endblock seo %}
+
+    <title>
+        {% block title %} HTMX/Django {% endblock title %}
+    </title>
 
   <!-- Halfmoon CSS -->
   <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
+  <!-- highlight js -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+ <!-- Font Awesome-->
+ <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script> 
 
+ <!-- fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;400;500&display=swap" rel="stylesheet">
   <style> 
   :root {
-          
-      --dm-button-box-shadow-focus: 0 0 0 0.2rem rgba(255, 255, 255, 255);
-      --lm-button-box-shadow-focus: 0 0 0 0.2rem rgba(72,113,129,1);
-      --primary-color-light: #5A8EA2;
-      --primary-color: #487181;
-      --dm-base-text-color: #ffffff
-            
+  --dm-base-text-color: #ffffff;
+  --primary-color: var(--indigo-color);                                     /* Before: var(--blue-color) */
+  --primary-color-light: var(--indigo-color-light);                         /* Before: var(--blue-color-light) */
+  --primary-color-very-light: var(--indigo-color-very-light);               /* Before: var(--blue-color-very-light) */
+  --primary-color-dark: var(--indigo-color-dark);                           /* Before: var(--blue-color-dark) */
+  --primary-color-very-dark: var(--indigo-color-very-dark);                 /* Before: var(--blue-color-very-dark) */
+  --primary-box-shadow-color: var(--indigo-box-shadow-color);               /* Before: var(--blue-box-shadow-color) */
+  --primary-box-shadow-color-darker: var(--indigo-box-shadow-color-darker); /* Before: var(--blue-box-shadow-color-darker) */
+  --text-color-on-primary-color-bg: var(--text-color-on-indigo-color-bg);
+  
+  font-family: 'Karla', sans-serif;
   }
-  .blog-button {
-    border-radius: 12px;
-    width: 10rem;
-    }
+
   .hyperlink-underline {
     cursor: pointer;
   }
+  pre,
+code,
+kbd,
+samp {
+  font-size: 1em;
+ 
+}
 
-  
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-size: 0.875em;
+}
+pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+}
+
+code {
+  font-size: 0.875em;
+  color: #d63384;
+  word-wrap: break-word;
+}
+
+
+kbd {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.875em;
+  color: #fff;
+  background-color: #212529;
+  border-radius: 0.2rem;
+}
+kbd kbd {
+  padding: 0;
+  font-size: 1em;
+  font-weight: 700;
+}
+
   </style>
 </head>
 
 
 <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-set-preferred-mode-onload="true">
- <!-- Font Awesome-->
- <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script> 
-  <!-- Modals go here -->
-  {% include 'components/modal.html' %}
+
   
   <!-- Page wrapper start -->
   <div class="page-wrapper">
