@@ -70,3 +70,7 @@ def tag_search(request, tag):
     page_number = request.GET.get("page")
     blogs = paginator.get_page(page_number)
     return render(request, "pages/blog_list.html", {"blogs": blogs})
+
+
+def course_landing_page(request):
+    return render(request, "pages/course_landing_page.html")

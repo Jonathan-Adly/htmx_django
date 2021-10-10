@@ -7,14 +7,22 @@
     <div class= "content col-6"> 
         <img src="{% static 'images/masthead.svg' %}" class="img-fluid w-300" alt="jonathan" >
         <h1 class="m-20 font-weight-bold font-size-24"> 
-            Django and HTMX By Example. Build Twelve Different Single Page Applications. 
+            HTMX/Django by Example. Build Twelve Modern Single Page Applications With No Javascript. 
         </h1>
-        <p> Full stack web development with only Python. No Javascript necessary.</p>
+        <p> Full stack web development with only Python. No complicated JS frameworks necessary.</p>
 
-        <p>
-        <a href="#" class="btn btn-primary mt-10" role="button"> Start Learning </a> 
-         
-        </p>
+        
+        <button 
+        class="btn btn-primary mt-10" 
+        role="button" 
+        hx-get="{% url 'landing_page' %}"
+        hx-trigger="click"
+        hx-target="#content"
+        hx-swap="outerHTML"
+        hx-push-url="true">
+        Start Learning 
+        </button> 
+    
         {% include 'pages/blog_list_3.html'%}
     </div>
 </div>

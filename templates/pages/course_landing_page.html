@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+<div class= "card text-center">
+
+  <h2 class="card-title">
+    Coming soon..
+</h2>
+<p id="countdown"></p>
+</div>
+
+</div>
+<script>
+
+let countDownDate = new Date("Dec 1, 2021 00:00:01").getTime();
+
+// Update the count down every 1 second
+const x = setInterval(function() {
+
+  // Get today's date and time
+  let now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  const distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("countdown").innerHTML = days + " days " + hours + " hours "
+  + minutes + " minutes " + seconds + " seconds ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("countdown").innerHTML = "We are live";
+  }
+}, 1000);
+</script>
+
+
+{% endblock content %}
+
+
+
