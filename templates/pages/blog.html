@@ -1,5 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block seo %}
+<!-- Facebook meta tags -->
+<meta property="og:title" content="{{blog.title}}" />
+<meta property="og:description" content="Read the post on htmx-django.com" />
+
+<!-- Twitter meta tags -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@django-htmx" />
+<meta name="twitter:creator" content="@djang-htmx" />
+<meta name="twitter:title" content="{{blog.title}}" />
+<meta name="twitter:description" content="Read more on htmx-django.com" />
+
+
+<!-- Search engine meta tags -->
+<meta name="description" content="{{blog.title}}" />
+{% endblock seo %}
+
+{% block title %} {{blog.title}}{% endblock title %}
+
 
 {% block content %}
 <div class="container-fluid">
@@ -18,16 +37,61 @@
 
 <div class="container-fluid">
     <div class="card w-lg-three-quarter w-full mx-auto border-0=">
-        {{blog.content|safe}}
-        <hr style="border-radius: 1rem; background-color: black;">
-        {% if blog.notes %}
+        {% if tldr %}
+         <div class="text-right"> 
+        <button 
+        class="btn btn-active btn-primary"
+        hx-get="{% url 'blog' blog.slug %}"
+        hx-trigger="click"
+        hx-target="#content"
+        hx-swap="outerHTML"
+        hx-push-url="true"
+        > The full version </button>
+        </div>
         {{blog.notes|safe}}
-        <hr style="border-radius: 1rem; background-color: black;">
+        {% else %}
+        <div class="text-right"> 
+        <button 
+        class="btn btn-active btn-primary"
+        hx-get="{% url 'tldr' blog.slug %}"
+        hx-trigger="click"
+        hx-target="#content"
+        hx-swap="outerHTML"
+        hx-push-url="true"
+        > the tl;dr version </button>
+        </div>
+        {{blog.content|safe}}
         {% endif %}
-     
         
     </div>
 
 </div>
+<script type="application/ld+json">
+{ "@context": "https://schema.org",
+"@type": "Article",
+"headline": "{{blog.title}}",
+"alternativeHeadline": "Learn how to build modern single page applications using Django & HTMX.",
+"image": "{% static 'images/masthead.svg' %}",
+"author": "Jonathan Adly",
+"genre": "Software",
+"keywords": "{{blog.title}}",
+"wordcount": " {{blog.content|safe|wordcount}}",
+"publisher": {
+"@type": "Organization",
+"name": "HTMX/Django"
+}
+,
+"url": "{{blog.get_absolute_url}}",
+"mainEntityOfPage": {
+"@type": "WebPage",
+"@id": "https://htmx-django.com/blog-list"
+},
+"datePublished": "{{blog.timestamp}}",
+"dateCreated": "{{blog.timestamp}}",
+"dateModified": "{{blog.updated}}",
+"description": "{{blog.title}}",
+"articleBody": "{{blog.content|striptags}}"
+}
+</script>
 
 {% endblock content %}

@@ -60,7 +60,12 @@ def blog(request, slug):
     blog = Blog.objects.get(slug=slug)
     blog.blog_views += 1
     blog.save()
-    return render(request, "pages/blog.html", {"blog": blog})
+    return render(request, "pages/blog.html", {"blog": blog, "tldr": False})
+
+
+def tldr(request, slug):
+    blog = Blog.objects.get(slug=slug)
+    return render(request, "pages/blog.html", {"blog": blog, "tldr": True})
 
 
 def tag_search(request, tag):

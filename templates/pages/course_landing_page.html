@@ -1,17 +1,187 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<div class="container-fluid">
-<div class= "card text-center">
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="viewport" content="width=device-width" />
 
-  <h2 class="card-title">
-    Coming soon..
-</h2>
-<p id="countdown"></p>
+  <!-- Favicon  -->
+   {% block seo %}
+    <!-- Facebook meta tags -->
+    <meta property="og:title" content="HTMX/Django: A modern fullstack Python stack for web development" />
+    <meta property="og:description" content="Learn how to build modern single page applications using Django & HTMX." />
+    <meta property="og:image" content="{% static 'images/masthead.svg' %}" />
+    <!-- Twitter meta tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@django-htmx" />
+    <meta name="twitter:creator" content="@djang-htmx" />
+    <meta name="twitter:title" content="HTMX/Django: A modern fullstack Python stack for web development" />
+    <meta name="twitter:description" content="Learn how to build modern single page applications using Django & HTMX." />
+    <meta name="twitter:image" content="{% static 'images/masthead.svg' %}" />
+
+    <!-- Search engine meta tags -->
+    <meta name="description"
+        content="HTMX/Django: Learn A modern fullstack Python stack for web development" />
+    {% endblock seo %}
+
+    <title>
+        {% block title %} HTMX/Django {% endblock title %}
+    </title>
+
+  <!-- Halfmoon CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon-variables.min.css" rel="stylesheet" />
+  <!-- highlight js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css">
+ <!-- Font Awesome-->
+ <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script> 
+
+ <!-- fonts -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;400;500&display=swap" rel="stylesheet">
+  <!-- ndigo-color: #6563ff;-->
+  <style> 
+  :root {
+  --dm-base-text-color: #ffffff;
+  --primary-color: var(--indigo-color);                                     /* Before: var(--blue-color) */
+  --primary-color-light: var(--indigo-color-light);                         /* Before: var(--blue-color-light) */
+  --primary-color-very-light: var(--indigo-color-very-light);               /* Before: var(--blue-color-very-light) */
+  --primary-color-dark: var(--indigo-color-dark);                           /* Before: var(--blue-color-dark) */
+  --primary-color-very-dark: var(--indigo-color-very-dark);                 /* Before: var(--blue-color-very-dark) */
+  --primary-box-shadow-color: var(--indigo-box-shadow-color);               /* Before: var(--blue-box-shadow-color) */
+  --primary-box-shadow-color-darker: var(--indigo-box-shadow-color-darker); /* Before: var(--blue-box-shadow-color-darker) */
+  --text-color-on-primary-color-bg: var(--text-color-on-indigo-color-bg);
+  
+  font-family: 'Karla', sans-serif;
+  }
+
+  .hyperlink-underline {
+    cursor: pointer;
+  }
+  pre,
+code,
+kbd,
+samp {
+  font-size: 1em;
+ 
+}
+
+pre {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  overflow: auto;
+  font-size: 0.875em;
+}
+pre code {
+  font-size: inherit;
+  color: inherit;
+  word-break: normal;
+}
+
+code {
+  font-size: 0.875em;
+  color: #d63384;
+  word-wrap: break-word;
+}
+
+
+kbd {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.875em;
+  color: #fff;
+  background-color: #212529;
+  border-radius: 0.2rem;
+}
+kbd kbd {
+  padding: 0;
+  font-size: 1em;
+  font-weight: 700;
+}
+
+  </style>
+</head>
+
+
+<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-set-preferred-mode-onload="true">
+
+  
+  <!-- Page wrapper start -->
+  <div class="page-wrapper">
+  <!-- Sticky alerts (toasts), empty container -->
+    <!-- Reference: https://www.gethalfmoon.com/docs/sticky-alerts-toasts -->
+    <div class="sticky-alerts"></div>
+    
+    <!-- Content wrapper start -->
+    <div class="content-wrapper" id="content">
+    
+<!-- landing page -->
+<div class="container-fluid bg-light-lm bg-very-dark-dm d-flex align-items-center justify-content-center" style="height: 100vh;">
+
+  <div class= "content m-0 text-center mw-full h-full">
+    <h1 class="text-primary" style="font-size:50px;"> HTMX/Django Interactive Course </h1> 
+    <p> Build Eight Modern Single Page Applications. No complicated JS frameworks Necessary </p>
+    <div class= "card shadow-lg border rounded w-700 mw-full">
+      {% include 'components/subscribe_box.html' %}
+
+        <div class="d-flex justify-content-between">
+       
+            <div>
+              <h5>Days</h5>
+              <p id="days"> </p>
+            </div>
+       
+            <div>
+              <h5>Hours</h5>
+              <p id="hours"> </p>
+            </div>
+          
+         
+          
+            <div>
+              <h5>Minutes</h5>
+              <p id="minutes"> </p>
+            </div>
+        
+       
+            <div>
+              <h5>Seconds</h5>
+              <p id="seconds"> </p>
+            </div>
+        
+
+        </div>
+    </p>
+    </div>
+  </div>
 </div>
 
+<!-- end landing page-->
+
 </div>
+    <!-- Content wrapper end -->
+
+  </div>
+  <!-- Page wrapper end -->
+
+  
+  <!-- Halfmoon JS -->
+<script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+<!-- HTMX CDN -->
+<script src="https://unpkg.com/htmx.org@1.1.0"></script> 
+    <!-- CSRF request in the headers -->
 <script>
+document.body.addEventListener('htmx:configRequest', (e) => {
+  e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+  })
+</script>
+  <script>
 
 let countDownDate = new Date("Dec 1, 2021 00:00:01").getTime();
 
@@ -30,20 +200,31 @@ const x = setInterval(function() {
   const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
   const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // Display the result in the element with id="demo"
-  document.getElementById("countdown").innerHTML = days + " days " + hours + " hours "
-  + minutes + " minutes " + seconds + " seconds ";
+ 
+  document.getElementById("days").innerHTML = days 
+  document.getElementById("hours").innerHTML = hours 
+  document.getElementById("minutes").innerHTML = minutes 
+  document.getElementById("seconds").innerHTML = seconds 
 
-  // If the count down is finished, write some text
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("countdown").innerHTML = "We are live";
   }
 }, 1000);
+
 </script>
-
-
-{% endblock content %}
-
-
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "WebPage",
+"name": "HTMX-Django",
+"description": "Learn how to build modern single page applications using Django & HTMX.",
+    "publisher": {
+            "@type": "Organization",
+            "name": "HTMX-Django"
+            }
+    }
+    </script>
+</body>
+</html>
 

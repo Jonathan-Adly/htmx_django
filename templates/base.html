@@ -141,5 +141,17 @@ document.body.addEventListener('htmx:configRequest', (e) => {
   e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
   })
 </script>
+<script type="application/ld+json">
+{
+"@context": "http://schema.org",
+"@type": "WebPage",
+"name": "HTMX-Django",
+"description": "Learn how to build modern single page applications using Django & HTMX.",
+    "publisher": {
+            "@type": "Organization",
+            "name": "HTMX-Django"
+            }
+    }
+    </script>
 </body>
 </html>
