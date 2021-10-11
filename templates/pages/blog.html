@@ -38,27 +38,26 @@
 <div class="container-fluid">
     <div class="card w-lg-three-quarter w-full mx-auto border-0=">
         {% if tldr %}
-         <div class="text-right"> 
-        <button 
-        class="btn btn-active btn-primary"
+        <div
+        class="text-right hyperlink-underline"
         hx-get="{% url 'blog' blog.slug %}"
         hx-trigger="click"
         hx-target="#content"
         hx-swap="outerHTML"
-        hx-push-url="true"
-        > The full version </button>
+        hx-push-url="true"> 
+        
+        The full version 
         </div>
         {{blog.notes|safe}}
         {% else %}
-        <div class="text-right"> 
-        <button 
-        class="btn btn-active btn-primary"
+        <div 
+        class="text-right hyperlink-underline"
         hx-get="{% url 'tldr' blog.slug %}"
         hx-trigger="click"
         hx-target="#content"
         hx-swap="outerHTML"
         hx-push-url="true"
-        > the tl;dr version </button>
+        > the tl;dr version
         </div>
         {{blog.content|safe}}
         {% endif %}
