@@ -52,3 +52,19 @@ class Blog(models.Model):
             to.append(sub.email)
 
         send_email(self.title, message, to)
+
+
+class SubscriberMessage(models.Model):
+    subject = models.CharField(max_length=150)
+    content = RichTextUploadingField()
+
+    def __str__(self):
+        return self.subject
+
+    def send(self, request):
+        subscribers = Subscriber.objects.all()
+        to = []
+        for sub in subscribers:
+            to.append(sub.email)
+
+        send_email(self.subject, self.content, to)

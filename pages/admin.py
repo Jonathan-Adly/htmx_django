@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Subscriber, Blog
+from .models import Subscriber, Blog, SubscriberMessage
 
 
 def send_email_update(modeladmin, request, queryset):
@@ -7,7 +7,7 @@ def send_email_update(modeladmin, request, queryset):
         email_update.send(request)
 
 
-send_email_update.short_description = "Send selected Newsletters to all subscribers"
+send_email_update.short_description = "Announce selected Newsletters to all subscribers"
 
 
 class BlogAdmin(admin.ModelAdmin):
@@ -19,5 +19,10 @@ class BlogAdmin(admin.ModelAdmin):
     actions = [send_email_update]
 
 
+class SubscriberMessageAdmin(admin.ModelAdmin):
+    actions = [send_email_update]
+
+
 admin.site.register(Subscriber)
 admin.site.register(Blog, BlogAdmin)
+admin.site.register(SubscriberMessage, SubscriberMessageAdmin)
