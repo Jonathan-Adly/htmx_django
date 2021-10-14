@@ -1,3 +1,8 @@
+import random
+
+from datetime import datetime
+
+from django.utils import timezone
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django.core.validators import validate_email
@@ -7,7 +12,6 @@ from django.views.decorators.http import require_http_methods
 
 from .models import Blog, Subscriber
 from config.utils import send_email
-import random
 
 
 def home(request):
@@ -78,4 +82,21 @@ def tag_search(request, tag):
 
 
 def course_landing_page(request):
-    return render(request, "pages/course_landing_page.html")
+    return render(
+        request,
+        "pages/course_landing_page.html",
+    )
+
+
+def time_difference(request):
+    delta = datetime(2021, 12, 1, tzinfo=timezone.utc) - timezone.now()
+    return render(
+        request,
+        "components/time_difference.html",
+        {
+            "days": delta.days,
+            "seconds": delta.seconds % 60,
+            "minutes": (delta.seconds // 60) % 60,
+            "hours": delta.seconds // 3600,
+        },
+    )

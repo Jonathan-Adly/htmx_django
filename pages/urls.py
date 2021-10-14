@@ -10,4 +10,5 @@ urlpatterns = [
     path("validate-email", views.validate_email_view, name="validate_email"),
     path("blog/search/<str:tag>", views.tag_search, name="tag_search"),
     path("course-landing-page", views.course_landing_page, name="landing_page"),
+    path("time-difference", views.time_difference, name="time_difference"),
 ]

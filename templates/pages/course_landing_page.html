@@ -125,37 +125,11 @@ kbd kbd {
   <div class= "content m-0 text-center mw-full h-full">
     <h1 class="text-primary" style="font-size:50px;"> HTMX/Django Interactive Course </h1> 
     <p> Build Eight Modern Single Page Applications. No complicated JS frameworks necessary </p>
+
+    
     <div class= "card shadow-lg border rounded w-700 mw-full">
       {% include 'components/subscribe_box.html' %}
-
-        <div class="d-flex justify-content-between">
-       
-            <div>
-              <h5>Days</h5>
-              <p id="days"> </p>
-            </div>
-       
-            <div>
-              <h5>Hours</h5>
-              <p id="hours"> </p>
-            </div>
-          
-         
-          
-            <div>
-              <h5>Minutes</h5>
-              <p id="minutes"> </p>
-            </div>
-        
-       
-            <div>
-              <h5>Seconds</h5>
-              <p id="seconds"> </p>
-            </div>
-        
-
-        </div>
-    </p>
+      {% include 'components/time_difference.html' %}
     </div>
   </div>
 </div>
@@ -181,38 +155,7 @@ document.body.addEventListener('htmx:configRequest', (e) => {
   e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
   })
 </script>
-  <script>
-
-let countDownDate = new Date("Dec 1, 2021 00:00:01").getTime();
-
-// Update the count down every 1 second
-const x = setInterval(function() {
-
-  // Get today's date and time
-  let now = new Date().getTime();
-
-  // Find the distance between now and the count down date
-  const distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
  
-  document.getElementById("days").innerHTML = days 
-  document.getElementById("hours").innerHTML = hours 
-  document.getElementById("minutes").innerHTML = minutes 
-  document.getElementById("seconds").innerHTML = seconds 
-
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("countdown").innerHTML = "We are live";
-  }
-}, 1000);
-
-</script>
 <script type="application/ld+json">
 {
 "@context": "http://schema.org",

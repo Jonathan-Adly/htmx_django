@@ -1,0 +1,29 @@
+<div
+id= "time" 
+class="d-flex justify-content-between"
+hx-get="{% url 'time_difference' %}"
+hx-trigger="every 1s"
+hx-select="#time" 
+hx-swap="outerHTML"
+>
+       
+            <div>
+              <h5>Days</h5>
+              <p> {{days}} </p>
+            </div>
+       
+            <div>
+              <h5>Hours</h5>
+              <p> {{hours}} </p>
+            </div>
+          
+            <div>
+              <h5>Minutes</h5>
+              <p> {{minutes}} </p>
+            </div>
+        
+            <div>
+              <h5>Seconds</h5>
+              <p> {{seconds}} </p>
+            </div>
+</div>
