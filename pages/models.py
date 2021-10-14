@@ -44,7 +44,7 @@ class Blog(models.Model):
         message = (
             "<p> Hi there, </p> <p> I just published a new article:"
             f"<a href='https://jonathanadly.com{self.get_absolute_url()}'> {self.title} </a>."
-            " Check it out and as always, I am happy to hear your feed back. Just respond to this email</p>"
+            " Check it out and as always, I am happy to hear your feedback. Just respond to this email</p>"
             "<p> Thanks! </p>"
             "<p> Jonathan Adly </p>"
         )
