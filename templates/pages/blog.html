@@ -4,13 +4,15 @@
 <!-- Facebook meta tags -->
 <meta property="og:title" content="{{blog.title}}" />
 <meta property="og:description" content="Read the post on htmx-django.com" />
-
+<meta property="og:image" content="{{blog.main_img.url}}" />
+<meta property= "og:url" content={{blog.get_absolute_url}}"" />
 <!-- Twitter meta tags -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:site" content="@django-htmx" />
-<meta name="twitter:creator" content="@djang-htmx" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@djangoHtmx" />
+<meta name="twitter:creator" content="@DjangoHtmx" />
 <meta name="twitter:title" content="{{blog.title}}" />
 <meta name="twitter:description" content="Read more on htmx-django.com" />
+<meta name="twitter:image" content="{{blog.main_img.url}}" />
 
 
 <!-- Search engine meta tags -->
