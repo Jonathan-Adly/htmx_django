@@ -13,7 +13,7 @@ send_email_update.short_description = "Announce selected Newsletters to all subs
 class BlogAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "timestamp",
+        "blog_views",
     )
     prepopulated_fields = {"slug": ("title",)}
     actions = [send_email_update]
