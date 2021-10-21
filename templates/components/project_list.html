@@ -1,0 +1,37 @@
+<section class="container-fluid mt-20 d-flex justify-content-center">
+  <div class="row">
+  {% for project in projects %}
+    <div class= "col-6">
+    
+        <div class="card p-0 border-0 w-300 text-center mw-full h-100 bg-transparent">
+        
+            <button 
+            class="btn h-100" 
+            style="border-color: #6563ff; border-style: solid;"
+            hx-get="{{project.get_absolute_url}}"
+            hx-trigger="click"
+            hx-target="#content"
+            hx-swap="outerHTML"
+            hx-push-url="true"
+            >
+           
+             <img src="{{project.img.url}}" class="img-fluid h-50" alt="{{project.title}}">
+            
+            </button>
+           
+           <div class="text-center">
+               <p> <strong> Project {{project.number}} </strong> </p>
+                <p> {{project.title}} </p>
+           </div>
+        </div>
+        
+      
+    </div>
+    {% empty %}
+
+    <p> coming soon... </p>
+
+    {% endfor %}
+
+  </div>
+</section>

@@ -69,3 +69,43 @@ class SubscriberMessage(models.Model):
             to.append(sub.email)
 
         send_email(self.subject, self.content, to)
+
+
+class Project(models.Model):
+    number = models.IntegerField()
+    title = models.CharField(max_length=250)
+    summary = RichTextField()
+    content = RichTextUploadingField()
+    img = models.ImageField(upload_to="courseimages/", blank=True)
+    draft = models.BooleanField(default=True)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["pk"]
+
+    def __str__(self):
+        return f"Project {self.number}"
+
+    def get_absolute_url(self):
+        return reverse("project", kwargs={"project_id": self.pk})
+
+
+class Chapter(models.Model):
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name="chapters"
+    )
+    name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.name
+
+
+class Section(models.Model):
+    chapter = models.ForeignKey(
+        Chapter, on_delete=models.CASCADE, related_name="sections"
+    )
+    name = models.CharField(max_length=250)
+
+    def __str__(self):
+        return f"Project{self.pk}"

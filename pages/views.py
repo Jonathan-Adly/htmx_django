@@ -10,7 +10,7 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
 
-from .models import Blog, Subscriber
+from .models import Blog, Subscriber, Project
 from config.utils import send_email
 
 
@@ -83,10 +83,8 @@ def tag_search(request, tag):
 
 
 def course_landing_page(request):
-    return render(
-        request,
-        "pages/course_landing_page.html",
-    )
+    projects = Project.objects.filter(draft=False)
+    return render(request, "pages/course_landing_page.html", {"projects": projects})
 
 
 def time_difference(request):
@@ -110,3 +108,8 @@ def draft_list(request):
     page_number = request.GET.get("page")
     blogs = paginator.get_page(page_number)
     return render(request, "pages/blog_list.html", {"blogs": blogs})
+
+
+def project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    return render(request, "pages/project.html", {"project": project})

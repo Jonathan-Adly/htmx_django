@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Subscriber, Blog, SubscriberMessage
+from .models import Subscriber, Blog, SubscriberMessage, Project, Chapter, Section
 
 
 def send_email_update(modeladmin, request, queryset):
@@ -26,3 +26,6 @@ class SubscriberMessageAdmin(admin.ModelAdmin):
 admin.site.register(Subscriber)
 admin.site.register(Blog, BlogAdmin)
 admin.site.register(SubscriberMessage, SubscriberMessageAdmin)
+admin.site.register(Project)
+admin.site.register(Chapter)
+admin.site.register(Section)

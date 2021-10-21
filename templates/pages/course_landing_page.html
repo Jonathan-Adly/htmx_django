@@ -103,6 +103,7 @@ kbd kbd {
   font-weight: 700;
 }
 
+
   </style>
 </head>
 
@@ -120,19 +121,24 @@ kbd kbd {
     <div class="content-wrapper" id="content">
     
 <!-- landing page -->
-<div class="container-fluid bg-light-lm bg-very-dark-dm d-flex align-items-center justify-content-center" style="height: 100vh;">
+<section class="container-fluid bg-light-lm bg-very-dark-dm d-flex align-items-center justify-content-center" style="height: 90vh;">
 
-  <div class= "content m-0 text-center mw-full h-full">
-    <h1 class="text-primary" style="font-size:50px;"> HTMX/Django Interactive Course </h1> 
+  <div class= "content mw-full text-center mt-5">
+    <h1 class="text-primary"> HTMX/Django Interactive Course </h1> 
     <p> Build Eight Modern Single Page Applications. No complicated JS frameworks necessary </p>
 
     
-    <div class= "card shadow-lg border rounded w-700 mw-full">
+    <div class= "card shadow-lg w-lg-700">
       {% include 'components/subscribe_box.html' %}
       {% include 'components/time_difference.html' %}
     </div>
+
   </div>
-</div>
+</section>
+<br>
+<br>
+
+{% include 'components/project_list.html' %}
 
 <!-- end landing page-->
 
