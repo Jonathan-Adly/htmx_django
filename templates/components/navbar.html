@@ -40,6 +40,18 @@
                 >
                     <span class="nav-link">Courses</span>
                 </li>
+                {% if request.user.is_staff %}
+                 <li 
+                class="nav-item"
+                hx-get="{% url 'drafts' %}"
+                hx-trigger="click"
+                hx-target="#content"
+                hx-swap="outerHTML"
+                hx-push-url="true"
+                >
+                 <span class="nav-link"> Drafts </span>
+                </li>
+                {% endif %}
             </ul>
             <div class="navbar-content ml-auto">
 
@@ -98,6 +110,18 @@
                         hx-swap="outerHTML"
                         hx-push-url="true"> Courses 
                         </div>
+                        {% if request.user.is_staff %}
+                        <div 
+                        class="dropdown-item"
+                        hx-get="{% url 'drafts' %}"
+                        hx-trigger="click"
+                        hx-target="#content"
+                        hx-swap="outerHTML"
+                        hx-push-url="true"
+                        >
+                        Drafts
+                        </div>
+                        {% endif %}
                         <div class="dropdown-divider"></div>
 
             

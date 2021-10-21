@@ -3,7 +3,7 @@ import random
 from datetime import datetime
 
 from django.utils import timezone
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
@@ -15,7 +15,7 @@ from config.utils import send_email
 
 
 def home(request):
-    blogs = Blog.objects.all()[:3]
+    blogs = Blog.objects.filter(draft=False)[:3]
     if request.method == "POST":
         email = request.POST["email"].lower()
         sub = Subscriber(email=email)
@@ -46,13 +46,13 @@ def validate_email_view(request):
 
 
 def blog_3(request):
-    all_blogs = list(Blog.objects.all())
+    all_blogs = list(Blog.objects.filter(draft=False))
     blogs = random.sample(all_blogs, 3)
     return render(request, "pages/blog_list_3.html", {"blogs": blogs})
 
 
 def blog_list(request):
-    all_blogs = Blog.objects.all()
+    all_blogs = Blog.objects.filter(draft=False)
     paginator = Paginator(all_blogs, 10)
 
     page_number = request.GET.get("page")
@@ -61,19 +61,20 @@ def blog_list(request):
 
 
 def blog(request, slug):
-    blog = Blog.objects.get(slug=slug)
-    blog.blog_views += 1
-    blog.save()
+    blog = get_object_or_404(Blog, slug=slug)
+    if not blog.draft:
+        blog.blog_views += 1
+        blog.save()
     return render(request, "pages/blog.html", {"blog": blog, "tldr": False})
 
 
 def tldr(request, slug):
-    blog = Blog.objects.get(slug=slug)
+    blog = get_object_or_404(Blog, slug=slug)
     return render(request, "pages/blog.html", {"blog": blog, "tldr": True})
 
 
 def tag_search(request, tag):
-    all_blogs = Blog.objects.filter(tag=tag)
+    all_blogs = Blog.objects.filter(draft=False, tag=tag)
     paginator = Paginator(all_blogs, 10)
 
     page_number = request.GET.get("page")
@@ -100,3 +101,12 @@ def time_difference(request):
             "hours": delta.seconds // 3600,
         },
     )
+
+
+def draft_list(request):
+    drafts = Blog.objects.filter(draft=True)
+    paginator = Paginator(drafts, 10)
+
+    page_number = request.GET.get("page")
+    blogs = paginator.get_page(page_number)
+    return render(request, "pages/blog_list.html", {"blogs": blogs})
