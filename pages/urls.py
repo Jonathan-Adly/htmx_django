@@ -11,6 +11,4 @@ urlpatterns = [
     path("time-difference", views.time_difference, name="time_difference"),
     path("drafts", views.draft_list, name="drafts"),
     path("blog/<slug:slug>", views.blog, name="blog"),
-    path("blog/<slug:slug>/tldr", views.tldr, name="tldr"),
-    path("project/<int:project_id>", views.project, name="project"),
 ]

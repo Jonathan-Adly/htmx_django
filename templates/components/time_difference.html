@@ -1,6 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <div
 id= "time" 
-class="d-flex justify-content-between"
+class="d-flex justify-content-between card"
 hx-get="{% url 'time_difference' %}"
 hx-trigger="every 1s"
 hx-select="#time" 
@@ -27,3 +30,5 @@ hx-swap="outerHTML"
               <p> {{seconds}} </p>
             </div>
 </div>
+
+{% endblock %}

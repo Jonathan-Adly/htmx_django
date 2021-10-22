@@ -3,7 +3,7 @@
   {% for project in projects %}
     <div class= "col-6">
     
-        <div class="card p-0 border-0 w-300 text-center mw-full h-100 bg-transparent">
+        <div class="card p-0 border-0 w-300 text-center mw-full bg-transparent">
         
             <button 
             class="btn h-100" 
@@ -11,17 +11,18 @@
             hx-get="{{project.get_absolute_url}}"
             hx-trigger="click"
             hx-target="#content"
-            hx-swap="outerHTML"
             hx-push-url="true"
             >
            
-             <img src="{{project.img.url}}" class="img-fluid h-50" alt="{{project.title}}">
+             <img src="{{project.main_img.url}}" class="img-fluid" alt="{{project.title}}">
             
             </button>
            
-           <div class="text-center">
-               <p> <strong> Project {{project.number}} </strong> </p>
-                <p> {{project.title}} </p>
+           <div 
+           class="text-center"
+           >
+           
+               <p> <strong> {{project.title}} </strong> </p>
            </div>
         </div>
         

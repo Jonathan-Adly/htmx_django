@@ -10,12 +10,12 @@ from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
 
-from .models import Blog, Subscriber, Project
+from .models import Blog, Subscriber
 from config.utils import send_email
 
 
 def home(request):
-    blogs = Blog.objects.filter(draft=False)[:3]
+    blogs = Blog.objects.filter(draft=False, course=False)[:3]
     if request.method == "POST":
         email = request.POST["email"].lower()
         sub = Subscriber(email=email)
@@ -46,13 +46,13 @@ def validate_email_view(request):
 
 
 def blog_3(request):
-    all_blogs = list(Blog.objects.filter(draft=False))
+    all_blogs = list(Blog.objects.filter(draft=False, course=False))
     blogs = random.sample(all_blogs, 3)
     return render(request, "pages/blog_list_3.html", {"blogs": blogs})
 
 
 def blog_list(request):
-    all_blogs = Blog.objects.filter(draft=False)
+    all_blogs = Blog.objects.filter(draft=False, course=False)
     paginator = Paginator(all_blogs, 10)
 
     page_number = request.GET.get("page")
@@ -68,11 +68,6 @@ def blog(request, slug):
     return render(request, "pages/blog.html", {"blog": blog, "tldr": False})
 
 
-def tldr(request, slug):
-    blog = get_object_or_404(Blog, slug=slug)
-    return render(request, "pages/blog.html", {"blog": blog, "tldr": True})
-
-
 def tag_search(request, tag):
     all_blogs = Blog.objects.filter(draft=False, tag=tag)
     paginator = Paginator(all_blogs, 10)
@@ -83,7 +78,7 @@ def tag_search(request, tag):
 
 
 def course_landing_page(request):
-    projects = Project.objects.filter(draft=False)
+    projects = Blog.objects.filter(draft=False, course=True).order_by("timestamp")
     return render(request, "pages/course_landing_page.html", {"projects": projects})
 
 
@@ -108,8 +103,3 @@ def draft_list(request):
     page_number = request.GET.get("page")
     blogs = paginator.get_page(page_number)
     return render(request, "pages/blog_list.html", {"blogs": blogs})
-
-
-def project(request, project_id):
-    project = get_object_or_404(Project, pk=project_id)
-    return render(request, "pages/project.html", {"project": project})
