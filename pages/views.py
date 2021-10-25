@@ -15,7 +15,7 @@ from config.utils import send_email
 
 
 def home(request):
-    blogs = Blog.objects.filter(draft=False, course=False)[:3]
+    blogs = Blog.objects.filter(draft=False)[:3]
     if request.method == "POST":
         email = request.POST["email"].lower()
         sub = Subscriber(email=email)
@@ -46,7 +46,7 @@ def validate_email_view(request):
 
 
 def blog_3(request):
-    all_blogs = list(Blog.objects.filter(draft=False, course=False))
+    all_blogs = list(Blog.objects.filter(draft=False))
     blogs = random.sample(all_blogs, 3)
     return render(request, "pages/blog_list_3.html", {"blogs": blogs})
 
