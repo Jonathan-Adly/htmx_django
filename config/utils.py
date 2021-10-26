@@ -6,8 +6,7 @@ REPLY_TO_EMAIL = "hello@htmx-django.com"
 
 
 def send_email(subject, message, to):
-    for i in range(0, len(to), 49):
-        chunk = to[i : i + 49]
+    for email in to:
         html_template = "email/email_base.html"
         html_message = render_to_string(
             html_template,
@@ -19,8 +18,7 @@ def send_email(subject, message, to):
             subject,
             html_message,
             DEFAULT_FROM_EMAIL,  # from
-            [REPLY_TO_EMAIL],  # to
-            chunk,  # BCC will go here
+            [email],  # to
             reply_to=[REPLY_TO_EMAIL],
         )
         email.content_subtype = "html"
