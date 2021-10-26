@@ -6,8 +6,8 @@ REPLY_TO_EMAIL = "hello@htmx-django.com"
 
 
 def send_email(subject, message, to):
-    for i in range(0, len(to), 50):
-        chunk = to[i : i + 50]
+    for i in range(0, len(to), 49):
+        chunk = to[i : i + 49]
         html_template = "email/email_base.html"
         html_message = render_to_string(
             html_template,
