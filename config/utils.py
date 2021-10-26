@@ -23,8 +23,5 @@ def send_email(subject, message, to):
         reply_to=[REPLY_TO_EMAIL],
     )
     email.content_subtype = "html"
-    try:
-        email.send()
-    except:
-        pass
+    email.send()
     return None
