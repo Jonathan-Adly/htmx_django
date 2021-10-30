@@ -9,6 +9,7 @@ from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
 from django.contrib import messages
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.cache import never_cache
 
 from .models import Blog, Subscriber
 from config.utils import send_email
@@ -60,6 +61,7 @@ def blog_list(request):
     return render(request, "pages/blog_list.html", {"blogs": blogs})
 
 
+@never_cache
 def blog(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     if not blog.draft:
