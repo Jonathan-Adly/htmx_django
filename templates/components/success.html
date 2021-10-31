@@ -1,3 +1,11 @@
 <div class="row card border-0 w-600 mw-full mx-auto" hx-get="{% url 'validate_email' %}" hx-trigger="load delay:3s"  hx-target="this" hx-swap="outerHTML">
-        <h5 class="card-title mt-20 mx-auto"> Thank you, your request was processed succesfully!</h5>
+        
+        <h5 class="card-title mt-20 mx-auto"> 
+                {% if success %}
+        Thank you, your request was processed succesfully!
+                {% else %}
+        Something went wrong, we were notified and we are working on it.
+        {% endif %}
+        </h5>
+        
 </div>

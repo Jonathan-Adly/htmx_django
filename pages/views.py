@@ -18,13 +18,16 @@ from config.utils import send_email
 def home(request):
     blogs = Blog.objects.filter(draft=False)[:3]
     if request.method == "POST":
-        email = request.POST["email"].lower()
-        sub = Subscriber(email=email)
-        sub.save()
-        subject = "Thanks for subscribing!"
-        message = "<p> Thank you for signing up! You will start receiving updates shortly with no further action. </p> Jonathan Adly </p> <p> P.S. If you need to get in touch with me, just respond to this email. </p>"
-        send_email(subject, message, [email])
-        return render(request, "components/success.html")
+        if "email" in request.POST:
+            email = request.POST["email"].lower()
+            sub = Subscriber(email=email)
+            sub.save()
+            subject = "Thanks for subscribing!"
+            message = "<p> Thank you for signing up! You will start receiving updates shortly with no further action. </p> Jonathan Adly </p> <p> P.S. If you need to get in touch with me, just respond to this email. </p>"
+            send_email(subject, message, [email])
+            return render(request, "components/success.html", {"success": True})
+        else:
+            return render(request, "components/success.html", {"success": False})
 
     return render(request, "pages/home.html", {"blogs": blogs})
 
