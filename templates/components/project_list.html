@@ -1,12 +1,12 @@
 <section class="container-fluid mt-20 d-flex justify-content-center">
   <div class="row">
   {% for project in projects %}
-    <div class= "col-6">
+    <div class= "col-sm-6" >
     
-        <div class="card p-0 border-0 w-300 text-center mw-full bg-transparent">
+        <div class="card p-0 border-0 w-300 text-center mw-full bg-transparent mx-auto">
         
             <button 
-            class="btn h-100" 
+            class="btn h-full" 
             style="border-color: #6563ff; border-style: solid;"
             hx-get="{{project.get_absolute_url}}"
             hx-trigger="click"
