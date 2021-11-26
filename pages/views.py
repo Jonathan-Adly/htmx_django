@@ -88,7 +88,7 @@ def course_landing_page(request):
 
 
 def time_difference(request):
-    delta = datetime(2021, 12, 1, tzinfo=timezone.utc) - timezone.now()
+    delta = datetime(2022, 12, 1, tzinfo=timezone.utc) - timezone.now()
     return render(
         request,
         "components/time_difference.html",

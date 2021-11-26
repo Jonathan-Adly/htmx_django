@@ -1,12 +1,8 @@
 <div 
     class="col-6 ml-auto"
-    hx-get="{% url 'home' %}"
-    hx-trigger="click"
-    hx-target="#content"
-    hx-swap="outerHTML"
-    hx-push-url="/"
+    hx-boost="true"
     > 
-    <span class="nav-link hyperlink-underline">  &larr; back to home </span> 
+    <a href="{% url 'home' %}" class="nav-link hyperlink-underline">  &larr; back to home </a> 
 </div> 
 <div class= "col-4 mt-10">
     <nav aria-label="Page navigation example">
