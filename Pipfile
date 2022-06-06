@@ -15,6 +15,7 @@ boto3 = "*"
 django-storages = "*"
 django-ses = "*"
 sentry-sdk = "*"
+pytest-django = "*"
 
 [dev-packages]
 
